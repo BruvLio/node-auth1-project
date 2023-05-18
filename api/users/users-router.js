@@ -1,12 +1,12 @@
 // Require the `restricted` middleware from `auth-middleware.js`. You will need it here!
 const express = require("express");
-co
+const { restricted } = require("../../api/auth/auth-middleware");
 
 const Users = require("./users-model");
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/", restricted, async (req, res, next) => {
   // console.log(`made it to users router`);
   try {
     const users = await Users.find();
@@ -39,14 +39,14 @@ router.get("/", async (req, res, next) => {
   }
  */
 
-router.post("/", async (req, res, next) => {
-  const user = req.body;
-  const hash = 
-  try {
-  } catch (err) {
-    next(err);
-  }
-});
+// router.post("/", async (req, res, next) => {
+//   const user = req.body;
+//   const hash =
+//   try {
+//   } catch (err) {
+//     next(err);
+//   }
+// });
 
 module.exports = router;
 // Don't forget to add the router to the `exports` object so it can be required in other modules
