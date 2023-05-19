@@ -70,8 +70,10 @@ router.post("/login", checkUsernameExists, async (req, res, next) => {
     req.session.user = user;
     // console.log(user);
     res.status(200).json({
-      message: `Welcome ${user.username}!`,
+    message: `Welcome ${user.username}!`,
     });
+  } else {
+    res.status(401).json({ message: "Invalid Credentials" });
   }
 });
 
